@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitVibe - Gen-Z Smart Gym & Nutrition Coach</title>
+  <meta name="description" content="AI partner latihan gym, nutrisi makro, dan kebugaran cerdas untuk generasi aktif." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- SIDEBAR: Parameters, Memory & Calculator -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 20V10M12 20V4M6 20v-6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">FITVIBE <span class="brand-subtag">GEN Z</span></div>
+            <p class="brand-subtitle">Smart Gym & Macro Companion</p>
+          </div>
+        </div>
+        <button class="icon-btn sidebar-toggle-btn" id="sidebar-toggle-btn" title="Sembunyikan Sidebar (Ctrl+B)" aria-label="Toggle Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- Section 1: Coach FitVibe Profile Card -->
+        <div class="sidebar-card coach-profile-card persona-card active single-coach-card" data-persona="fitvibe_coach" id="persona-fitvibe">
+          <div class="coach-card-inner">
+            <div class="coach-avatar-wrapper">
+              <div class="persona-monogram fitvibe-coach">FV</div>
+              <span class="coach-status-dot" title="AI Coach Siap"></span>
+            </div>
+            <div class="coach-info">
+              <div class="coach-name-row">
+                <span class="coach-name">Coach FitVibe</span>
+                <span class="verified-badge" title="Official Verified Coach">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#00a896"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </span>
+              </div>
+              <div class="coach-role">Gen-Z Strength & Nutrition Mentor</div>
+            </div>
+            <span class="param-badge active-tag" id="active-persona-hint">Official Coach</span>
+          </div>
+        </div>
+
+        <!-- Section 2: Program & Target Latihan -->
+        <div class="sidebar-card program-card">
+          <div class="card-header-compact">
+            <div class="card-title-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="card-title-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              <span>Target & Program Latihan</span>
+            </div>
+          </div>
+
+          <div class="card-control-block">
+            <label class="field-micro-label" for="goal-select">Fokus Utama</label>
+            <div class="select-wrapper">
+              <select id="goal-select" class="custom-select">
+                <option value="hypertrophy">Hipertrofi / Pembentukan Massa Otot</option>
+                <option value="fat_loss">Fat Loss / Pembakaran Lemak</option>
+                <option value="strength">Powerlifting & Kekuatan Maksimal</option>
+                <option value="productivity">Kebugaran Efisien 30 Menit</option>
+              </select>
+              <span class="select-chevron">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="card-control-block mt-2">
+            <label class="field-micro-label">Tingkat Pengalaman</label>
+            <div class="pill-group" id="experience-selector">
+              <button type="button" class="pill-btn" data-level="beginner">Pemula</button>
+              <button type="button" class="pill-btn active" data-level="intermediate">Menengah</button>
+              <button type="button" class="pill-btn" data-level="advanced">Mahir</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Profil Fisik Pengguna -->
+        <div class="sidebar-card profile-card">
+          <div class="card-header-compact">
+            <div class="card-title-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="card-title-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span>Profil Fisik Pengguna</span>
+            </div>
+            <button type="button" class="save-link-btn" id="save-profile-btn" title="Simpan perubahan profil">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              <span>Simpan</span>
+            </button>
+          </div>
+          
+          <div class="profile-grid-clean">
+            <div class="input-field">
+              <label for="prof-name">Nama</label>
+              <input type="text" id="prof-name" placeholder="Rian" autocomplete="off" />
+            </div>
+            <div class="input-field">
+              <label for="prof-gender">Gender</label>
+              <div class="select-wrapper mini-select">
+                <select id="prof-gender">
+                  <option value="male">Pria</option>
+                  <option value="female">Wanita</option>
+                </select>
+                <span class="select-chevron">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="input-field">
+              <label for="prof-weight">Berat Badan</label>
+              <div class="input-with-unit">
+                <input type="number" id="prof-weight" placeholder="70" min="30" max="250" />
+                <span class="unit-badge">kg</span>
+              </div>
+            </div>
+            <div class="input-field">
+              <label for="prof-height">Tinggi Badan</label>
+              <div class="input-with-unit">
+                <input type="number" id="prof-height" placeholder="175" min="100" max="230" />
+                <span class="unit-badge">cm</span>
+              </div>
+            </div>
+            <div class="input-field">
+              <label for="prof-age">Usia</label>
+              <div class="input-with-unit">
+                <input type="number" id="prof-age" placeholder="25" min="12" max="100" />
+                <span class="unit-badge">th</span>
+              </div>
+            </div>
+            <div class="input-field">
+              <label for="prof-days">Jadwal Latihan</label>
+              <div class="select-wrapper mini-select">
+                <select id="prof-days">
+                  <option value="3">3 Hari / mgg</option>
+                  <option value="4" selected>4 Hari / mgg</option>
+                  <option value="5">5 Hari / mgg</option>
+                  <option value="6">6 Hari / mgg</option>
+                </select>
+                <span class="select-chevron">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="input-field full-width mt-2">
+            <label for="prof-diet">Preferensi Makanan / Alergi</label>
+            <input type="text" id="prof-diet" placeholder="cth: Tinggi protein, halal, bebas laktosa" />
+          </div>
+        </div>
+
+        <!-- Section 4: Kalkulator BMR & Makronutrisi -->
+        <div class="sidebar-card calculator-card">
+          <div class="card-header-compact">
+            <div class="card-title-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="card-title-icon"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+              <span>Kalkulator BMR & Makro</span>
+            </div>
+            <span class="formula-tag">Mifflin-St Jeor</span>
+          </div>
+          <p class="calc-hint-text">
+            Estimasi instan kalori harian & rasio protein, karbohidrat, dan lemak sesuai profil fisik.
+          </p>
+          <button type="button" class="btn-calculate" id="calc-macros-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Hitung Kebutuhan Makronutrisi</span>
+          </button>
+        </div>
+
+        <!-- Section 5: Coach Pro-Tip & System Status -->
+        <div class="sidebar-card tip-card">
+          <div class="tip-card-header">
+            <span class="tip-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              COACH PRO TIP
+            </span>
+            <span class="tip-tag">Biomekanika</span>
+          </div>
+          <p class="tip-text" id="daily-coach-tip">
+            "Fokus pada kontrol tempo eksentrik (fase turun beban 2–3 detik) untuk mengoptimalkan aktivasi serat otot secara maksimal."
+          </p>
+          <div class="sidebar-meta-footer">
+            <div class="meta-status">
+              <span class="status-pulse-dot"></span>
+              <span>AI Coach Online</span>
+            </div>
+            <span class="shortcut-pill">Ctrl + B</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- MAIN CHAT AREA -->
+    <main class="chat-container">
+      <!-- Top Navbar -->
+      <header class="top-nav">
+        <div class="nav-left">
+          <button class="icon-btn nav-sidebar-open-btn" id="nav-sidebar-open-btn" title="Tampilkan Sidebar (Ctrl+B)" aria-label="Buka Sidebar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          
+          <div class="coach-profile-summary">
+            <div class="coach-avatar-wrapper">
+              <span class="coach-avatar-initials" id="nav-coach-avatar">FV</span>
+              <span class="status-indicator online"></span>
+            </div>
+            <div class="nav-coach-info">
+              <div class="coach-title-row">
+                <h1 class="coach-name" id="nav-coach-name">Coach FitVibe</h1>
+                <span class="verified-coach-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  Verified Coach
+                </span>
+              </div>
+              <p class="coach-mode" id="nav-coach-mode">Gen-Z Strength & Nutrition Coach</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <!-- Voice TTS Readout Toggle -->
+          <button class="nav-btn" id="tts-toggle-btn" title="Audio Suara Bot (Aktif/Nonaktif)" aria-label="Audio Suara Bot">
+            <span class="btn-icon" id="tts-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </span>
+            <span class="btn-text">Voice TTS</span>
+          </button>
+          
+          <!-- Download / Export Chat -->
+          <button class="nav-btn" id="export-chat-btn" title="Simpan / Download Rencana Latihan" aria-label="Download Rencana Latihan">
+            <span class="btn-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </span>
+            <span class="btn-text">Export</span>
+          </button>
+
+          <!-- Clear Chat -->
+          <button class="nav-btn btn-danger-hover" id="clear-chat-btn" title="Mulai Percakapan Baru" aria-label="Reset Chat">
+            <span class="btn-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            </span>
+            <span class="btn-text">Reset</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Active Parameter Pill Bar -->
+      <div class="status-pill-bar">
+        <div class="status-item">
+          <span class="status-key">Pelatih:</span>
+          <span class="status-val" id="pill-persona">Coach FitVibe</span>
+        </div>
+        <div class="status-divider">/</div>
+        <div class="status-item">
+          <span class="status-key">Target:</span>
+          <span class="status-val" id="pill-goal">Hipertrofi</span>
+        </div>
+        <div class="status-divider">/</div>
+        <div class="status-item">
+          <span class="status-key">Level:</span>
+          <span class="status-val" id="pill-level">Menengah</span>
+        </div>
+        <div class="status-divider">/</div>
+        <div class="status-item" id="pill-user-wrap">
+          <span class="status-key">Profil:</span>
+          <span class="status-val" id="pill-user">Tersedia</span>
+        </div>
+      </div>
+
+      <!-- Messages Feed -->
+      <div class="messages-viewport" id="chat-box">
+        <!-- Hero Welcome Card -->
+        <div class="welcome-hero" id="welcome-hero">
+          <div class="hero-badge-tag">FITVIBE AI ASSISTANT</div>
+          <h2 class="hero-title">Kenapa FitVibe AI Coach Terbaik buat Kamu?</h2>
+          <p class="hero-description" id="hero-welcome-text">
+            Asisten gym dan nutrisi cerdas generasi Gen-Z yang siap membantumu merancang program latihan, menghitung target makronutrisi harian, hingga tips konsistensi latihan di gym maupun di rumah tanpa ribet.
+          </p>
+
+          <div class="quick-prompts-container">
+            <div class="quick-prompts-title">MODUL PERTANYAAN REKOMENDASI</div>
+            <div class="quick-prompts-grid">
+              <button class="prompt-chip" data-prompt="Buatkan jadwal latihan Push-Pull-Legs 4 hari seminggu untuk saya">
+                <span class="chip-tag">PROGRAM</span>
+                <span class="chip-text">Jadwal Push-Pull-Legs 4 Hari</span>
+              </button>
+              <button class="prompt-chip" data-prompt="Hitung kebutuhan kalori dan porsi makronutrisi harian berdasarkan profil tubuh saya">
+                <span class="chip-tag">NUTRISI</span>
+                <span class="chip-text">Hitung Kalori & Makronutrisi</span>
+              </button>
+              <button class="prompt-chip" data-prompt="Rekomendasi menu makanan tinggi protein ramah kantong untuk sarapan dan makan malam">
+                <span class="chip-tag">MEAL PLAN</span>
+                <span class="chip-text">Menu Tinggi Protein Terjangkau</span>
+              </button>
+              <button class="prompt-chip" data-prompt="Bagaimana cara mengatasi pegal otot (DOMS) ekstrem setelah latihan Leg Day?">
+                <span class="chip-tag">RECOVERY</span>
+                <span class="chip-text">Protokol Penanganan DOMS</span>
+              </button>
+              <button class="prompt-chip" data-prompt="Latihan full-body 30 menit di rumah tanpa alat untuk pekerja sibuk">
+                <span class="chip-tag">EFISIEN</span>
+                <span class="chip-text">Latihan 30 Menit Tanpa Alat</span>
+              </button>
+              <button class="prompt-chip" data-prompt="Jelaskan konsep progressive overload yang benar agar otot terus berkembang tanpa cedera">
+                <span class="chip-tag">BIOMEKANIK</span>
+                <span class="chip-text">Panduan Progressive Overload</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Follow-up Suggestion Chips Bar -->
+      <div class="dynamic-suggestions-bar hidden" id="suggestions-bar">
+        <div class="suggestions-label">Saran Topik Lanjutan:</div>
+        <div class="suggestions-list" id="suggestions-list"></div>
+      </div>
+
+      <!-- Input Footer Dock -->
+      <footer class="chat-input-area">
+        <form id="chat-form" class="input-form">
+          <!-- Voice Input Mic Button -->
+          <button type="button" class="icon-btn voice-btn" id="voice-btn" title="Bicara dengan Suara (Speech-to-Text)" aria-label="Input Suara">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </button>
+
+          <!-- Textarea for smooth multi-line -->
+          <div class="input-wrapper">
+            <textarea
+              id="user-input"
+              rows="1"
+              placeholder="Tanyakan program latihan, mekanisme gerakan, atau target nutrisi..."
+              autocomplete="off"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Submit Send Button -->
+          <button type="submit" class="send-btn" id="send-btn" title="Kirim Pesan" aria-label="Kirim Pesan">
+            <span class="send-text">Kirim</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </form>
+        <div class="input-subbar">
+          <span class="keyboard-tip">Tekan <kbd>Enter</kbd> untuk kirim, <kbd>Shift+Enter</kbd> baris baru</span>
+          <span class="voice-status-text" id="voice-status"></span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
