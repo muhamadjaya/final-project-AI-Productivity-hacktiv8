@@ -16,8 +16,8 @@ const ai = new GoogleGenAI({
 });
 
 // Primary model and fallback
-const PRIMARY_MODEL = 'gemini-2.5-flash';
-const FALLBACK_MODEL = 'gemini-3.5-flash-lite';
+const PRIMARY_MODEL = 'gemini-3.5-flash-lite';
+const FALLBACK_MODEL = 'gemini-2.5-flash';
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
